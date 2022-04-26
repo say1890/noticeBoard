@@ -35,7 +35,7 @@
 						<textarea class ="form-control mt-5 col-10 " rows ="20" id="contentInput"></textarea>
 					</div>	
 					<div class="d-flex col-12">
-						<input type ="file" class="ml-10 mt-2" id ="">
+						<input type ="file" class="ml-10 mt-2" id ="fileInput">
 					</div>	
 						
 						<div class ="d-flex justify-content-between mt-5">
@@ -50,6 +50,8 @@
 		
 		<script>
 		$(document).ready(function(){
+			
+	
 			$("#saveBtn").on("click",function(){
 				var title  = $("#titleInput").val().trim();
 				var content  = $("#contentInput").val();
@@ -65,6 +67,8 @@
 				formData.append("subject",title);
 				formData.append("content",content);
 				formData.append("file", $("#fileInput")[0].files[0]);
+
+				
 				
 				
 				$.ajax({

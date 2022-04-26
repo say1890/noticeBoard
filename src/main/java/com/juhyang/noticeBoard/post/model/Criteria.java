@@ -1,7 +1,9 @@
 package com.juhyang.noticeBoard.post.model;
 
 
-	public class Criteria {
+
+
+public class Criteria {
 		
 		private int page;
 		private int perPageNum;
@@ -42,12 +44,17 @@ package com.juhyang.noticeBoard.post.model;
 		}
 		
 		public int getRowStart() {
+			//게시글 갯수가 20개인 경우 id가 20인 것 먼저 보여주고 싶음
 			rowStart = ((page - 1) * perPageNum) + 1;
+			//page가 1일 경우 row의 start는 1이 됨
 			return rowStart;
 		}
 		
 		public int getRowEnd() {
+			
 			rowEnd = rowStart + perPageNum - 1;
+			//row의 start가 1일 경우 row end는 10이 됨
+			
 			return rowEnd;
 		}
 

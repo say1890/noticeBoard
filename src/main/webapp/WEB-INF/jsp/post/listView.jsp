@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>∏ﬁ∏ ∏ÆΩ∫∆Æ</title>
+<title>Î©îÎ™® Î¶¨Ïä§Ìä∏</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- bootstrap -->
@@ -37,6 +37,8 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 <!--===============================================================================================-->
 
+<!-- test stylesheet -->
+<link rel = "stylesheet" href = "/static/css/test.css" type = "text/css">
 
 
 
@@ -48,30 +50,57 @@
 
 
 <div class="table100 ver1 m-b-110 mt-5">
-					<div class="table100-head">
+					<div class="table100-head ">
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<th class="cell100 column1">NO.</th>
-									<th class="cell100 column2">¡¶∏Ò</th>
-									<th class="cell100 column3">Ω√∞£</th>
+							
+									<th class="cell100  col-1">NO.</th>
+									<th class="cell100  col-5">Ï†úÎ™©</th>
+									<th class="cell100  col-2">ÏãúÍ∞Ñ</th>
+									<th class="cell100  col-1">Ï°∞ÌöåÏàò</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
 
 					<div class="table100-body js-pscroll ps ps--active-y">
-					
-					
-					
 						<table>
 							<tbody>
 								<c:forEach var ="post" items = "${postlist}">
-						
+									
+									<c:set var="now" value="<%=new java.util.Date()%>"/>
+									<c:set var = "nowday"> <fmt:formatDate value = "${now}" pattern="yyyyMMdd"/> </c:set>
+									<c:set var="createdAt"><fmt:formatDate value ="${post.createdAt}" pattern = "yyyyMMdd"/></c:set>
+									
 								<tr class="row100 body">
-									<td class="cell100 column1">${post.id}</td>
-									<td class="cell100 column2"><a href ="/post/detail_view?postId=${post.id}">${post.subject}</td>
-									<td class="cell100 column3"><fmt:formatDate value ="${post.createdAt}" pattern = "yyyy≥‚ MMø˘ dd¿œ hΩ√ mm∫–"/></td>
+									<td class="cell100  col-1 ">
+									<c:choose>
+										<c:when test = "${nowday eq createdAt }">
+												 <div class="col-1 d-flex">
+												 <div class ="text-danger mr-3">N</div>
+												 ${post.id}
+												 </div>
+										</c:when>
+										<c:otherwise>
+												 <div class="col-1 ml-4">${post.id}</div>	
+										</c:otherwise>
+									</c:choose>
+									
+									</td>
+									<td class="cell100   col-5"><a href ="/post/detail_view?postId=${post.id}">${post.subject}</td>
+									
+									
+									
+									
+									<td class="cell100  col-2">
+										<fmt:formatDate value ="${post.createdAt}" pattern = "yyyy.MM.dd hh:mm"/>
+										
+									</td>
+									
+									
+									<td class="cell100  col-1">${post.view}</td>
+									
 								</tr>
 
 								</c:forEach>
@@ -82,7 +111,7 @@
 				<div class ="d-flex justify-content-center">
 					  <ul>
 					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">¿Ã¿¸</a></li>
+					    	<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">Ïù¥Ï†Ñ</a></li>
 					    </c:if> 
 					
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -90,10 +119,16 @@
 					    </c:forEach>
 					
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">¥Ÿ¿Ω</a></li>
+					    	<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">Îã§Ïùå</a></li>
 					    </c:if> 
 					  </ul>
 				</div>
+<c:import url ="/WEB-INF/jsp/post/test.jsp" />
+
+
+
+
+
 
 
 <!--===============================================================================================-->	
@@ -118,5 +153,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="/static/js/main.js"></script>
+
+
+
+	
 </body>
 </html>

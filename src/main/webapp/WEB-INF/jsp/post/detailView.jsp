@@ -13,10 +13,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
 	
-	
 <!-- 부트스트랩 아이콘 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
+<!-- fancy box css -->
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
 <!-- stylesheet -->
 	<link rel = "stylesheet" href = "/static/css/style.css" type = "text/css">
 </head>
@@ -28,11 +29,16 @@
 				<div class ="w-75 my-5">
 					<div class ="d-flex">
 						<label class ="mr-2 mt-2">제목:</label>
-						<input type ="text" class ="form-control col-11" placeholder = "제목 입력" id ="titleInput"	value ="${post.subject}">
+						<div class ="form-control col-11"  id ="titleInput">
+							<c:out value = "${post.subject}"></c:out>
+						</div>
 					</div>	
 						<textarea class ="form-control mt-5" rows ="5" id="contentInput">${post.content}</textarea>
 						<div>
-							<img src = "${post.imagePath}">
+						<a href = "${post.imagePath}" data-fancybox>
+						<img src = "${post.imagePath}">
+						</a>
+							
 						</div>
 						
 						
@@ -70,5 +76,8 @@
 			});
 		});
 		</script>
+		
+	<!-- fancybox -->
+		<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 </body>
 </html>

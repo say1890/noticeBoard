@@ -1,7 +1,6 @@
 package com.juhyang.noticeBoard.post.bo;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,15 @@ public class PostBO {
 	// 포스트가 몇 개 있는지 확인
 	public int listCount() {
 		return postDAO.countBoard();
+	}
+
+	public void addViews(int postId) {
+		postDAO.increaseView(postId);
+		
+	}
+
+	public List<Post> getPopularPostList() {
+		return postDAO.selectPopularPosts();
 	}
 	
 	

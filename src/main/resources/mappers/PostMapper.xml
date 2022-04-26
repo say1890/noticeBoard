@@ -27,15 +27,17 @@
 			`id`
 			,`subject`
 			,`content`
+			,`view`
 			,`createdAt`
 			,`updatedAt`
-	FROM `post`
+	FROM
+		`post`
 	WHERE 
 		`id`
 	BETWEEN 
 		#{rowStart} AND #{rowEnd} 
 	ORDER BY
-		`id` DESC
+		`id` ASC
 	
 	</select>
 
@@ -46,6 +48,7 @@
 			,`subject`
 			,`content`
 			,`imagePath`
+			,`view`
 			,`createdAt`
 			,`updatedAt`
 			
@@ -56,6 +59,23 @@
 	</select>
 	
 	
+	<select id= "selectPopularPosts" resultType= "com.juhyang.noticeBoard.post.model.Post">
+	SELECT
+			`id`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`view`
+			,`createdAt`
+			,`updatedAt`
+			
+	FROM `post`
+	WHERE
+		 `imagePath` IS NOT NULL
+	ORDER BY
+		`view` DESC, `createdAt` DESC LIMIT 10;
+	</select>
+	
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countBoard" resultType="int">
 	SELECT
@@ -64,16 +84,7 @@
 		`post`
 	</select>
 	
-	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectBoard" resultType="com.juhyang.noticeBoard.post.model.Post">
-		SELECT
-			* 
-		FROM 
-			`post`		
-		WHERE
-			`id`
-		BETWEEN #{start} AND #{end}
-	</select>
+	
 	
 	
 	<select id = "getListWithPaging" resultType = "com.juhyang.noticeBoard.post.model.Post">
@@ -98,5 +109,13 @@
 		`id` = #{postId}
 		
 	</delete>
+	<update id ="increaseView" parameterType = "int">
+	UPDATE
+		`post`
+	SET
+		`view` = `view` + 1
+	WHERE
+		`id` = #{postId}
+	</update>
 
  </mapper>

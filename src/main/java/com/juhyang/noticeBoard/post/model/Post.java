@@ -7,6 +7,7 @@ public class Post {
 	private String subject; 
 	private String content;
 	private String imagePath;
+	private int view;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -44,5 +45,11 @@ public class Post {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public int getView() {
+		return view;
+	}
+	public void setView(int view) {
+		this.view = view;
 	}
 }
