@@ -1,0 +1,35 @@
+@charset "UTF-8";
+ #header{
+    font-weight: bold;
+    background-color: #f8f6ff;
+    font-size: 30px;
+    color: white;
+}
+.wrapper{
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lists{
+    display: flex;
+    margin-right: 60px;
+}
+.lists li{
+    margin-right: 20px;
+}
+.title{
+    font-size: 40px;
+    margin-left: 30px;
+    color:black;
+}
+.log{
+    margin-right: 30px;
+}
+
+i{
+	font-size: 50px;
+	 color: black;
+}
+

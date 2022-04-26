@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+  <mapper namespace="com.juhyang.noticeBoard.post.dao.PostDAO">
+    <insert id="insertPost" parameterType = "map">
+		INSERT INTO `post`
+		(	
+		`subject`
+		,`content`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+		)
+		VALUES
+		(
+		 #{subject}
+		 ,#{content}
+		 ,#{imagePath}
+		 ,now()
+		 ,now()
+		)
+	</insert>
+	<select id ="selectPostList" resultType = "com.juhyang.noticeBoard.post.model.Post" parameterType ="com.juhyang.noticeBoard.post.model.Criteria">
+	SELECT
+			`id`
+			,`subject`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+	FROM `post`
+	WHERE 
+		`id`
+	BETWEEN 
+		#{rowStart} AND #{rowEnd} 
+	ORDER BY
+		`id` DESC
+	
+	</select>
+
+
+	<select id = "selectPost" resultType = "com.juhyang.noticeBoard.post.model.Post" >
+	SELECT
+			`id`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+			
+	FROM `post`
+	WHERE
+		 `id` = #{postId}
+
+	</select>
+	
+	
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBoard" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM 
+		`post`
+	</select>
+	
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="com.juhyang.noticeBoard.post.model.Post">
+		SELECT
+			* 
+		FROM 
+			`post`		
+		WHERE
+			`id`
+		BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	<select id = "getListWithPaging" resultType = "com.juhyang.noticeBoard.post.model.Post">
+	SELECT
+			`id`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+			
+	FROM
+		`post`
+	WHERE
+		`id` 
+	
+	</select>
+	
+	<delete id ="deletePost" parameterType ="int">
+	DELETE FROM `post`
+	WHERE
+		`id` = #{postId}
+		
+	</delete>
+
+ </mapper>
