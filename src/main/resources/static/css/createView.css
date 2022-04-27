@@ -3,3 +3,7 @@
 .ml-10{
 	margin-left:93px;
 }
+
+img{
+	object-fit: cover;
+}

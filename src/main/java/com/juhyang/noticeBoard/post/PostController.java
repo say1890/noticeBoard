@@ -36,6 +36,7 @@ public class PostController {
 	public String listView(Model model, Criteria cri) {
 		
 			model.addAttribute("postlist", postBO.getPostList(cri));
+			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(postBO.listCount());
@@ -94,11 +95,6 @@ public class PostController {
 	    
 		return "/post/detailView";
 	}
-	@GetMapping("/test_view")
-	public String testView(Model model) {
-		List<Post> popular = postBO.getPopularPostList();
-		model.addAttribute("popularPosts", popular);
-		return "/post/test";
-	}
+	
 	
 }

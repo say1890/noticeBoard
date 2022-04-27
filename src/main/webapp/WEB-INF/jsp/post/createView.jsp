@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>¸Ş¸ğ ÀÔ·Â</title>
+<title>ë©”ëª¨ ì…ë ¥</title>
 <!-- bootstrap -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -27,8 +27,8 @@
 				<div class ="w-75 my-5 mx-auto">
 					
 					<div class ="d-flex col-12 justify-content-center">
-						<label class ="mr-2 mt-2 ">Á¦¸ñ:</label>
-						<input type ="text" class ="form-control col-9" placeholder = "Á¦¸ñ ÀÔ·Â" id ="titleInput">
+						<label class ="mr-2 mt-2 ">ì œëª©:</label>
+						<input type ="text" class ="form-control col-9" placeholder = "ì œëª© ì…ë ¥" id ="titleInput">
 						
 					</div>
 					<div class ="d-flex  col-12 justify-content-center">
@@ -36,11 +36,25 @@
 					</div>	
 					<div class="d-flex col-12">
 						<input type ="file" class="ml-10 mt-2" id ="fileInput">
-					</div>	
+					</div>
+					
+				<div class="d-flex col-10 justify-content-end">
+					<label for="captcha">ë‹¤ì¤‘ ì—…ë¡œë“œ ë°©ì§€</label>
+					
+						<img id ="captchaImg" class ="btn col-1 " title="ìº¡ì°¨ì´ë¯¸ì§€" src="/captchaImg.do" alt="ìº¡ì°¨ì´ë¯¸ì§€" class ="col-1 form-control" />
+						<button id="reload" type="button"   onclick="javaScript:getImage()" >ìƒˆë¡œê³ ì¹¨</button>
+				<!-- class ="d-none" -->
+					
+						<input id="answer" type="text" class="form-control col-1">
+						<button id="check" class ="btn  col-1" type="button">í™•ì¸</button>
+					
+				</div>	
+
+
+				<div class ="d-flex justify-content-between mt-5">
 						
-						<div class ="d-flex justify-content-between mt-5">
-							<a href = "/post/list_view" class ="btn btn-info">¸ñ·ÏÀ¸·Î</a>
-							<button type ="button" class ="btn btn-success" id ="saveBtn">ÀúÀåÇÏ±â</button>
+							<a href = "/post/list_view" class ="btn btn-info">ëª©ë¡ìœ¼ë¡œ</a>
+							<button type ="button" class ="btn btn-success" id ="saveBtn">ì €ì¥í•˜ê¸°</button>
 						</div>
 				</div>
 			</section>
@@ -51,16 +65,26 @@
 		<script>
 		$(document).ready(function(){
 			
-	
+			
+			$("#captchaImg").on("click",function(){
+				$("#reload").click();
+
+			});	
 			$("#saveBtn").on("click",function(){
 				var title  = $("#titleInput").val().trim();
 				var content  = $("#contentInput").val();
 				
 				if(title == null || title == ""){
-					alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+					alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
+					return;
 				}
 				if(content == null || content == ""){
-					alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+					alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
+					return;
+				}
+				if(!content&&!title){
+					alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
+					return;
 				}
 				
 				var formData = new FormData();
@@ -68,27 +92,26 @@
 				formData.append("content",content);
 				formData.append("file", $("#fileInput")[0].files[0]);
 
-				
-				
+			
 				
 				$.ajax({
 					type :"post",
 					url:"/post/create",
 					data:formData,
-					enctype:"multipart/form-data", //  ÆÄÀÏ ¾÷·Îµå ÇÊ¼ö
+					enctype:"multipart/form-data", //  íŒŒì¼ ì—…ë¡œë“œ í•„ìˆ˜
 					processData:false,
 					contentType:false,
 					success:function(data){
 						if(data.result == "success"){
-							alert("¼º°ø");
+							alert("ì„±ê³µ");
 							location.href = "/post/list_view";
 						}
 						else{
-							alert("±Û¾²±â ½ÇÆĞ");
+							alert("ê¸€ì“°ê¸° ì‹¤íŒ¨");
 						}
 					},
 					error:function(){
-						alert("¿¡·¯ ¹ß»ı");
+						alert("ì—ëŸ¬ ë°œìƒ");
 					}
 				});
 				
@@ -96,6 +119,6 @@
 			
 		});
 		</script>
-
+<script src="/static/js/captcha.js"></script>
 </body>
 </html>

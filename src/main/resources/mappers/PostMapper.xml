@@ -32,12 +32,8 @@
 			,`updatedAt`
 	FROM
 		`post`
-	WHERE 
-		`id`
-	BETWEEN 
-		#{rowStart} AND #{rowEnd} 
 	ORDER BY
-		`id` ASC
+		`id` DESC LIMIT #{rowStart}, 10 ;
 	
 	</select>
 

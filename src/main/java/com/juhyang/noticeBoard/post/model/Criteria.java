@@ -1,15 +1,24 @@
 package com.juhyang.noticeBoard.post.model;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class Criteria {
-		
+
 		private int page;
 		private int perPageNum;
 		private int rowStart;
 		private int rowEnd;
 		
+		
+		public void setRowStart(int rowStart) {
+			this.rowStart = rowStart;
+		}
+
+		public void setRowEnd(int rowEnd) {
+			this.rowEnd = rowEnd;
+		}
+
 		public Criteria() {
 			this.page = 1;
 			this.perPageNum = 10;
@@ -37,16 +46,19 @@ public class Criteria {
 		
 		public int getPageStart() {
 			return (this.page - 1) * perPageNum;
+			// 페이지가 1일 경우 pagestart눈 0이 됨
 		}
 		
 		public int getPerPageNum() {
 			return this.perPageNum;
+			
+			//
 		}
 		
 		public int getRowStart() {
-			//게시글 갯수가 20개인 경우 id가 20인 것 먼저 보여주고 싶음
-			rowStart = ((page - 1) * perPageNum) + 1;
-			//page가 1일 경우 row의 start는 1이 됨
+
+		rowStart = ((page - 1) * perPageNum) + 1;
+		//1 ->  1
 			return rowStart;
 		}
 		

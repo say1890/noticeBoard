@@ -18,7 +18,7 @@
 
 
 <div class="demo-wrapper">
-	<h1>인기 게시물</h1>
+	<h1>인기 게시물 </h1>
     <ul class="portfolio-items">
     <c:forEach var = "posts" items ="${popularPosts}">
 				<li class="item">

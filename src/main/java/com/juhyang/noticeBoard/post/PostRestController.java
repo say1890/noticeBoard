@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.noticeBoard.post.bo.PostBO;
+import com.juhyang.noticeBoard.simpleCaptcha.CaptchaUtil;
 
 @RestController
 @RequestMapping("/post")
@@ -63,5 +65,7 @@ public class PostRestController {
 		return result;
 		
 	}
+	
+	
 	
 }
