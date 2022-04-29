@@ -37,4 +37,6 @@ public interface MemoDAO {
 	public List<Memo> selectPopularMemos();
 
   public void resetId();
+
+  public List<Memo> selectSearchedMemoList(Criteria cri, @Param("keyword")String keyword);
 }

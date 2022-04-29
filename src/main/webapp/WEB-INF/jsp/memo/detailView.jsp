@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>메모 보기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0">
+
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -17,11 +19,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
 <!-- stylesheet -->
 <link rel="stylesheet" href="/static/css/util.css" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
+	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<div id="wrap">
-		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		
 		<section class="d-flex justify-content-center">
 			<div class="w-75 my-5">
 				<div class="d-flex">

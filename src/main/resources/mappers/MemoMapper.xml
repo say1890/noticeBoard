@@ -103,9 +103,14 @@
 	</update>
 
 	<update id="resetId">
-ALTER TABLE `memo` AUTO_INCREMENT=1;
-SET @COUNT = 0;
-UPDATE `memo` SET `memo`.`id` = @COUNT:=@COUNT+1;
+	
+	ALTER TABLE `memo` AUTO_INCREMENT=1;
+	SET @COUNT = 0;
+	UPDATE `memo` SET `memo`.`id` = @COUNT:=@COUNT+1;
 	</update>
+	<select id ="selectSearchedMemoList" resultType="com.juhyang.noticeBoard.memo.model.Memo">
+	SELECT * FROM memo
+	WHERE subject LIKE #{keyword};
+	</select>
 
 </mapper>

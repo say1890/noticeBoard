@@ -104,37 +104,8 @@ iframe {
   right: 5px;
 }
 
-.table100 .ps__rail-y::before {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #ebebeb;
-  border-radius: 5px;
-  width: 100%;
-  height: calc(100% - 30px);
-  left: 0;
-  top: 15px;
-}
 
-.table100 .ps__rail-y .ps__thumb-y {
-  width: 100%;
-  right: 0;
-  background-color: transparent;
-  opacity: 1 !important;
-}
 
-.table100 .ps__rail-y .ps__thumb-y::before {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #cccccc;
-  border-radius: 5px;
-  width: 100%;
-  height: calc(100% - 100px);
-  left: 0;
-  top: 15px;
-  bottom: 15px;
-}
 
 
 /*//////////////////////////////////////////////////////////////////

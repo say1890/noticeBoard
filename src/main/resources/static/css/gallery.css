@@ -1,13 +1,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lato:300,100,400);
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  list-style-type: none
-}
+
 
 a {
   color: inherit;
@@ -21,24 +15,6 @@ a.link {
 html,
 body {
   min-height: 100%
-}
-
-body {
-  background: #eee url('https://subtlepatterns.com/patterns/pw_pattern.png');
-  font: 300 20px/1.5 "Lato", sans-serif;
-  color: #333
-}
-
-header {
-  background-color: white;
-  padding: 0 30px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  line-height: 2em
-}
-
-header a {
-  font-size: 20px
 }
 
 .demo-wrapper {
@@ -170,7 +146,7 @@ figure {
 }
 
 figcaption {
-  height: 60px;
+  height: 87px;
   width: 100%;
   padding: 0;
   position: absolute;

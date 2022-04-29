@@ -86,5 +86,20 @@ public class MemoController {
 
 		return "/memo/detailView";
 	}
+	
+	@GetMapping("/search_view")
+	public String searchView(Model model, Criteria cri,@RequestParam("keyword") String keyword) {
+	  List<Memo >searchedList = memoBO.getSearchedMemoList(cri, keyword);
+    model.addAttribute("searchedList", searchedList);
+      
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    
+    int totalCount = searchedList.size();
+    pageMaker.setTotalCount(totalCount);
 
+    model.addAttribute("pageMaker", pageMaker);
+
+    return "/memo/listView";
+  }
 }

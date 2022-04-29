@@ -58,7 +58,11 @@ public class MemoBO {
 	public List<Memo> getPopularMemoList() {
 		return memoDAO.selectPopularMemos();
 	}
-	
+
+  public List<Memo> getSearchedMemoList(Criteria cri, String keyword) {
+    return memoDAO.selectSearchedMemoList(cri, keyword);
+  }
+
 	
 	
 }

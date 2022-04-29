@@ -5,6 +5,20 @@
     font-size: 30px;
     color: white;
 }
+
+header {
+  font-weight: bold;
+  background-color: white;
+  padding: 0 30px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  line-height: 2em
+}
+
+header a {
+  font-size: 20px
+}
+
 .wrapper{
     width: 100%;
     min-height: 100px;
@@ -31,5 +45,63 @@
 i{
 	font-size: 50px;
 	 color: black;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  background: #eee url('https://subtlepatterns.com/patterns/pw_pattern.png');
+  
+  color: #333
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  font: 300 20px/1.5 "Lato", sans-serif;
+  font-weight: bold;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  
+  padding: 5px;
+  height: 35px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #6c7ae0;
+}
+
+.searchTerm:focus{
+  color: #6c7ae0;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #6c7ae0;
+  background: #6c7ae0;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
