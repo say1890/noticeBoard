@@ -1,10 +1,4 @@
-/*
 
-Demo for my blog post: https://blog.sarasoueidan.com/horizontal-portfolio-layout
-
-Also available on Github: https://github.com/SaraSoueidan/horizontal-portfolio-layout
-
-*/
 @import url(https://fonts.googleapis.com/css?family=Lato:300,100,400);
 
 * {
@@ -12,7 +6,7 @@ Also available on Github: https://github.com/SaraSoueidan/horizontal-portfolio-l
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  position: relative;
+  
   list-style-type: none
 }
 

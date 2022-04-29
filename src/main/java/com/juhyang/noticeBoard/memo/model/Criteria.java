@@ -1,7 +1,4 @@
-package com.juhyang.noticeBoard.post.model;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
+package com.juhyang.noticeBoard.memo.model;
 
 public class Criteria {
 
@@ -45,7 +42,7 @@ public class Criteria {
 		}
 		
 		public int getPageStart() {
-			return (this.page - 1) * perPageNum;
+			return (this.page-1) * perPageNum;
 			// 페이지가 1일 경우 pagestart눈 0이 됨
 		}
 		

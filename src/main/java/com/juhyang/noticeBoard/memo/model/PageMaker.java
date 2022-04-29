@@ -1,4 +1,4 @@
-package com.juhyang.noticeBoard.post.model;
+package com.juhyang.noticeBoard.memo.model;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;

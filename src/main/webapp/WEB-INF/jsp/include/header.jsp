@@ -10,8 +10,8 @@
             
             <div class="title"><i class="fas fa-kiss-wink-heart"></i> noticeBoard</div>
             <div class ="d-flex">
-             	<a href = "/post/create_view"><i class="bi bi-pen-fill  mr-5"></i></a>
-               <a href="/post/list_view"><i class="bi bi-house-door-fill"></i></a>
+             	<a href = "/memo/create_view"><i class="bi bi-pen-fill  mr-5"></i></a>
+               <a href="/memo/list_view"><i class="bi bi-house-door-fill"></i></a>
             </div>
            
                

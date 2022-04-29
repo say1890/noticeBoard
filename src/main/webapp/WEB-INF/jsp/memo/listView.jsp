@@ -16,7 +16,7 @@
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-- stylesheet -->
+<!-- 테이블 관련  -->
 
 
 
@@ -34,11 +34,11 @@
 	<link rel="stylesheet" type="text/css" href="/static/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/table.css">
 <!--===============================================================================================-->
 
-<!-- test stylesheet -->
-<link rel = "stylesheet" href = "/static/css/test.css" type = "text/css">
+<!-- 인기 게시물 stylesheet -->
+<link rel = "stylesheet" href = "/static/css/gallery.css" type = "text/css">
 
 
 
@@ -67,11 +67,11 @@
 					<div class="table100-body js-pscroll ps ps--active-y">
 						<table>
 							<tbody>
-								<c:forEach var ="post" items = "${postlist}">
+								<c:forEach var ="memo" items = "${memolist}">
 									
 									<c:set var="now" value="<%=new java.util.Date()%>"/>
 									<c:set var = "nowday"> <fmt:formatDate value = "${now}" pattern="yyyyMMdd"/> </c:set>
-									<c:set var="createdAt"><fmt:formatDate value ="${post.createdAt}" pattern = "yyyyMMdd"/></c:set>
+									<c:set var="createdAt"><fmt:formatDate value ="${memo.createdAt}" pattern = "yyyyMMdd"/></c:set>
 									
 								<tr class="row100 body">
 									<td class="cell100  col-1 ">
@@ -79,27 +79,27 @@
 										<c:when test = "${nowday eq createdAt }">
 												 <div class="col-1 d-flex">
 												 <div class ="text-danger mr-3">N</div>
-												 ${post.id}
+												 ${memo.id}
 												 </div>
 										</c:when>
 										<c:otherwise>
-												 <div class="col-1 ml-4">${post.id}</div>	
+												 <div class="col-1 ml-4">${memo.id}</div>	
 										</c:otherwise>
 									</c:choose>
 									
 									</td>
-									<td class="cell100   col-5"><a href ="/post/detail_view?postId=${post.id}">${post.subject}</td>
+									<td class="cell100   col-5"><a href ="/memo/detail_view?memoId=${memo.id}">${memo.subject}</td>
 									
 									
 									
 									
 									<td class="cell100  col-2">
-										<fmt:formatDate value ="${post.createdAt}" pattern = "yyyy.MM.dd hh:mm"/>
+										<fmt:formatDate value ="${memo.createdAt}" pattern = "yyyy.MM.dd hh:mm"/>
 										
 									</td>
 									
 									
-									<td class="cell100  col-1">${post.view}</td>
+									<td class="cell100  col-1">${memo.view}</td>
 									
 								</tr>
 
@@ -123,7 +123,7 @@
 					    </c:if> 
 					  </ul>
 				</div>
-<c:import url ="/WEB-INF/jsp/post/test.jsp" />
+<c:import url ="/WEB-INF/jsp/memo/gallery.jsp" />
 
 
 
@@ -152,7 +152,7 @@
 		
 	</script>
 <!--===============================================================================================-->
-	<script src="/static/js/main.js"></script>
+	<script src="/static/js/table.js"></script>
 
 
 

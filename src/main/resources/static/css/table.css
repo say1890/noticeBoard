@@ -93,7 +93,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Scroll bar ]*/
 .js-pscroll {
-  position: relative;
+  
   overflow: hidden;
 }
 
@@ -130,9 +130,10 @@ iframe {
   background-color: #cccccc;
   border-radius: 5px;
   width: 100%;
-  height: calc(100% - 30px);
+  height: calc(100% - 100px);
   left: 0;
   top: 15px;
+  bottom: 15px;
 }
 
 

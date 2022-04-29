@@ -1,8 +1,8 @@
-package com.juhyang.noticeBoard.post.model;
+package com.juhyang.noticeBoard.memo.model;
 
 import java.util.Date;
 
-public class Post {
+public class Memo {
 	private int id;
 	private String subject; 
 	private String content;
