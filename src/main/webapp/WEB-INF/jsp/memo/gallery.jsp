@@ -27,7 +27,7 @@
 								<c:set var="subject" value="${memo.subject}" />
 								<c:choose>
 										<c:when test="${fn:length(subject)>14}">
-												 ${fn:substring(subject,0,14)}...
+												 ${fn:substring(subject,0,12)}...
 										</c:when>
 										<c:otherwise>
 												 ${memo.subject}
@@ -37,7 +37,17 @@
 							</a>
 						</h4>
 						</p>
-						<p>${memo.content}</p>
+						<p>
+						<c:set var="content" value="${memo.content}" />
+							<c:choose>
+											<c:when test="${fn:length(content)>30}">
+													 ${fn:substring(content,0,30)}…
+											</c:when>
+											<c:otherwise>
+														${memo.content}
+											</c:otherwise>
+							</c:choose>
+					</p>
 					</figcaption>
 				</figure>
 				<div class="views">👀${memo.view}</div>

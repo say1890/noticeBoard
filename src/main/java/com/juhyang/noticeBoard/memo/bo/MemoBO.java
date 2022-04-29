@@ -40,7 +40,8 @@ public class MemoBO {
 		if(isFileExist!=null) {
 			FileManagerService.removeFile(Memo.getImagePath());
 		}
-		
+		// 게시글 삭제로 인해 흐트러진 auto increment 바로잡기 
+		memoDAO.resetId();
 		return memoDAO.deleteMemo(memoId);
 	}
 	

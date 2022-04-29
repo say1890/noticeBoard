@@ -35,4 +35,6 @@ public interface MemoDAO {
 	public void increaseView(@Param("memoId")int memoId);
 
 	public List<Memo> selectPopularMemos();
+
+  public void resetId();
 }

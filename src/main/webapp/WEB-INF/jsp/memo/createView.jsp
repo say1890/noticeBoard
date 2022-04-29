@@ -52,7 +52,7 @@
 
 				<div class="d-flex col-10 justify-content-end">
 					<label for="captcha">다중 업로드 방지</label> <img id="captchaImg"
-						class="btn col-1 " title="캡차이미지" src="/captchaImg.do" alt="캡차이미지"
+						class="col-2 " title="캡차이미지" src="/captchaImg.do" alt="캡차이미지"
 						class="col-1 form-control" /> <input id="answer" type="text"
 						class="form-control col-1">
 					<button id="check" class="btn  col-1" type="button">확인</button>
