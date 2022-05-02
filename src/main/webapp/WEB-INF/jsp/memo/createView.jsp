@@ -17,6 +17,7 @@
 <!-- stylesheet -->
 <link rel="stylesheet" href="/static/css/header.css" type="text/css">
 <link rel="stylesheet" href="/static/css/createView.css" type="text/css">
+<link rel="stylesheet" href="/static/css/body.css" type="text/css">
 </head>
 <body>
 

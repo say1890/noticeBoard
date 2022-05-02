@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+body {
+ background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #ffe1f2, #58a3ff);
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-control:disabled, .form-control[readonly]{
+  background-color:#ffffff4f;
+}

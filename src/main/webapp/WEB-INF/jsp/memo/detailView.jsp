@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
 <!-- stylesheet -->
 <link rel="stylesheet" href="/static/css/util.css" type="text/css">
-
+<link rel="stylesheet" type="text/css" href="/static/css/body.css">
 <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>

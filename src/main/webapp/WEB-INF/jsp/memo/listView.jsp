@@ -32,114 +32,119 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="/static/css/util.css">
 <link rel="stylesheet" type="text/css" href="/static/css/table.css">
+<link rel="stylesheet" type="text/css" href="/static/css/body.css">
 <!--===============================================================================================-->
 
 <!-- 인기 게시물 stylesheet -->
 <link rel="stylesheet" href="/static/css/gallery.css" type="text/css">
 
 <!-- tablesorter  -->
-
 <script type="module" src="/static/js/jquery.tablesorter.js"></script>
-
 
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 
-<table class="tablesorter mt-5">
+	<table class="tablesorter mt-5" cellpadding="0" cellspacing="0" border="0">
 
-				<thead>
-					<tr class="row100 head">
-						<th class="cell100  col-1 text-center">NO.</th>
-						<th class="cell100  col-3 text-center">제목</th>
-						<th class="cell100  col-2 text-center">시간</th>
-						<th class="cell100  col-1 text-center">조회수</th>
-					</tr>
-				</thead>
-				</div>
-				</div>
+		<thead class="tbl-header">
+			<tr>
+				<th class ="text-center">NO.</th>
+				<th>제목</th>
+				<th>시간</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
 
 
 
-				<tbody>
-					<c:forEach var="memo" items="${memolist}">
-
-						<c:set var="now" value="<%=new java.util.Date()%>" />
-						<c:set var="nowday">
-							<fmt:formatDate value="${now}" pattern="yyyyMMdd" />
-						</c:set>
-						<c:set var="createdAt">
-							<fmt:formatDate value="${memo.createdAt}" pattern="yyyyMMdd" />
-						</c:set>
-
-						<tr class="row100 body">
-							<td class="cell100  col-1 ">
-								<c:choose>
-									<c:when test="${nowday eq createdAt }">
-										<div class="col-1 d-flex">
-											<div class="text-danger mr-4">N</div>
-											${memo.id}
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="col-1 ml-5">${memo.id}</div>
-									</c:otherwise>
-								</c:choose>
-
-							</td>
-							<td class="cell100   col-3 text-center">
-								<a href="/memo/detail_view?memoId=${memo.id}">${memo.subject}
-							</td>
 
 
+		<tbody class="tbl-content">
+			<c:forEach var="memo" items="${memolist}">
 
-							<c:set var="createdTime">
-								<fmt:formatDate value="${memo.createdAt}" pattern="HH" />
-							</c:set>
-							<td class="cell100  col-2 text-center">
-								<c:if test="${nowday eq createdAt }">
-									<c:choose>
-										<c:when test="${ createdTime <12 }">
+				<c:set var="now" value="<%=new java.util.Date()%>" />
+				<c:set var="nowday">
+					<fmt:formatDate value="${now}" pattern="yyyyMMdd" />
+				</c:set>
+				<c:set var="createdAt">
+					<fmt:formatDate value="${memo.createdAt}" pattern="yyyyMMdd" />
+				</c:set>
+
+				<tr>
+					<td>
+						<c:choose>
+							<c:when test="${nowday eq createdAt }">
+									<div class ="text-center text-danger"><small>New</small></div>
+									<div class="mr-2 text-center">${memo.id}</div>
+									
+									
+								
+							</c:when>
+							<c:otherwise>
+								<div class="col-1 ml-5">${memo.id}</div>
+							</c:otherwise>
+						</c:choose>
+
+					</td>
+					<td>
+						<a href="/memo/detail_view?memoId=${memo.id}">${memo.subject}
+					</td>
+
+
+
+					<c:set var="createdTime">
+						<fmt:formatDate value="${memo.createdAt}" pattern="HH" />
+					</c:set>
+					<td>
+						<c:if test="${nowday eq createdAt }">
+							<c:choose>
+								<c:when test="${ createdTime <12 }">
 											오전
 										</c:when>
-										<c:otherwise>
+								<c:otherwise>
 											오후
 										</c:otherwise>
-									</c:choose>
-									<fmt:formatDate value="${memo.createdAt}" pattern="h:mm" />
-								</c:if>
+							</c:choose>
+							<fmt:formatDate value="${memo.createdAt}" pattern="h:mm" />
+						</c:if>
 
-							</td>
-
-
-							<td class="cell100  col-1 text-center">${memo.view}</td>
-
-						</tr>
-
-					</c:forEach>
-				</tbody>
-			</div>	
+					</td>
 
 
+					<td>${memo.view}</td>
 
+				</tr>
 
-			</table>
-		<div class="d-flex justify-content-center mt-5">
-			<ul>
-				<c:if test="${pageMaker.prev}">
-					<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-				</c:if>
+			</c:forEach>
 
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
-				</c:forEach>
+		</tbody>
 
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-				</c:if>
-			</ul>
 		</div>
+
+
+
+
+	</table>
+	<div class="d-flex justify-content-center mt-5">
+		<ul>
+			<c:if test="${pageMaker.prev}">
+				<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+			</c:if>
+		</ul>
+	</div>
+	<c:if test = "${not empty popular}">
 		<c:import url="/WEB-INF/jsp/memo/gallery.jsp" />
+	</c:if>
+	
 
 
 
@@ -148,14 +153,14 @@
 
 
 
-		<!--===============================================================================================-->
-		<script src="/static/vendor/bootstrap/js/popper.js"></script>
-		<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<!--===============================================================================================-->
-		<script src="/static/vendor/select2/select2.min.js"></script>
-		<!--===============================================================================================-->
-		<script src="/static/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script>
+	<!--===============================================================================================-->
+	<script src="/static/vendor/bootstrap/js/popper.js"></script>
+	<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="/static/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="/static/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
 			$('.js-pscroll').each(function() {
 				var ps = new PerfectScrollbar(this);
 
@@ -171,7 +176,7 @@
 				});
 			});
 		</script>
-		<!--===============================================================================================-->
-		<script src="/static/js/table.js"></script>
+	<!--===============================================================================================-->
+	<script src="/static/js/table.js"></script>
 </body>
 </html>

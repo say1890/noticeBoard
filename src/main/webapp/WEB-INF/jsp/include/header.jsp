@@ -13,7 +13,7 @@
 	<div class="wrapper">
 
 		<div class="title">
-			<i class="fas fa-kiss-wink-heart"></i> noticeBoard
+			 noticeBoard
 		</div>
 		<div class="wrap mt-5">
 			<div class="search">

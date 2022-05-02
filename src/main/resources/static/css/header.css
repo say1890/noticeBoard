@@ -1,10 +1,4 @@
 @charset "UTF-8";
- #header{
-    font-weight: bold;
-    background-color: #f8f6ff;
-    font-size: 30px;
-    color: white;
-}
 
 header {
   font-weight: bold;
@@ -36,7 +30,7 @@ header a {
 .title{
     font-size: 40px;
     margin-left: 30px;
-    color:black;
+    color:white;
 }
 .log{
     margin-right: 30px;
@@ -44,16 +38,12 @@ header a {
 
 i{
 	font-size: 50px;
-	 color: black;
+	 color: rgb(255, 255, 255);
 }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body {
-  background: #eee url('https://subtlepatterns.com/patterns/pw_pattern.png');
-  
-  color: #333
-}
+
 
 * {
   margin: 0;
