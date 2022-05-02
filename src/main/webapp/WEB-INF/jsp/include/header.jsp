@@ -17,7 +17,13 @@
 		</div>
 		<div class="wrap mt-5">
 			<div class="search">
-				<input type="text" class="searchTerm" placeholder="What are you looking for?" id="searchInput">
+				<select name="searchType" id = "searchType">
+				  <option value="" selected="selected">검색 조건</option>
+					<option value="s">제목</option>
+					<option value="c">내용</option>
+					<option value="all" >제목 + 내용</option>
+				</select>
+				<input type="text" class="searchTerm col-12" placeholder="What are you looking for?" id="keyword">
 				<button type="button" class="searchButton" id ="searchButton">
 					<i class="fa fa-search"></i>
 				</button>

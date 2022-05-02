@@ -20,86 +20,75 @@ import com.juhyang.noticeBoard.memo.model.Memo;
 @Controller
 @RequestMapping("/memo")
 public class MemoController {
-
-	@Autowired
-	MemoBO memoBO;
-
-	@GetMapping("/create_view")
-	public String createView() {
-		return "/memo/createView";
-	}
-
-	@GetMapping("/list_view")
-	public String listView(Model model, Criteria cri) {
-
-		model.addAttribute("memolist", memoBO.getMemoList(cri));
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(memoBO.listCount());
-
-		model.addAttribute("pageMaker", pageMaker);
-
-		List<Memo> popular = memoBO.getPopularMemoList();
-		model.addAttribute("popularMemos", popular);
-
-		return "/memo/listView";
-	}
-
-	@GetMapping("/detail_view")
-	public String detailView(@RequestParam("memoId") int memoId, Model model, HttpServletRequest request,
-			HttpServletResponse response) {
-		Memo memo = memoBO.getMemo(memoId);
-		model.addAttribute("memo", memo);
-
-		List<Memo> popular = memoBO.getPopularMemoList();
-		model.addAttribute("popularMemos", popular);
-
-		/* 중복 조회 막기 */
-		Cookie oldCookie = null;
-
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("memoView")) {
-					oldCookie = cookie;
-				}
-			}
-		}
-
-		if (oldCookie != null) {
-			if (!oldCookie.getValue().contains("[" + memoId + "]")) {
-				memoBO.addViews(memoId);
-				oldCookie.setValue(oldCookie.getValue() + "_[" + memoId + "]");
-				oldCookie.setPath("/");
-				oldCookie.setMaxAge(60 * 60 * 24);
-				response.addCookie(oldCookie);
-			}
-		} else {
-			memoBO.addViews(memoId);
-			Cookie newCookie = new Cookie("memoView", "[" + memoId + "]");
-			newCookie.setPath("/");
-			newCookie.setMaxAge(60 * 60 * 24); // 24*60*60-> 24번*60번*60초=24시간동안 저장됨
-			response.addCookie(newCookie);
-		}
-
-		return "/memo/detailView";
-	}
-	
-	@GetMapping("/search_view")
-	public String searchView(Model model, Criteria cri,@RequestParam("keyword") String keyword) {
-	  List<Memo >searchedList = memoBO.getSearchedMemoList(cri, keyword);
-    model.addAttribute("searchedList", searchedList);
-      
+  
+  @Autowired
+  MemoBO memoBO;
+  
+  @GetMapping("/create_view")
+  public String createView() {
+    return "/memo/createView";
+  }
+  
+  @GetMapping("/list_view")
+  public String listView(Model model, Criteria cri) {
+    
+    model.addAttribute("memolist", memoBO.getMemoList(cri));
+    
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
+    pageMaker.setTotalCount(memoBO.listCount());
     
-    int totalCount = searchedList.size();
-    pageMaker.setTotalCount(totalCount);
-
     model.addAttribute("pageMaker", pageMaker);
-
+    
+    List<Memo> popular = memoBO.getPopularMemoList();
+    model.addAttribute("popularMemos", popular);
+    
+    
+    
+    
     return "/memo/listView";
   }
+  
+  @GetMapping("/detail_view")
+  public String detailView(@RequestParam("memoId") int memoId, Model model,
+      HttpServletRequest request, HttpServletResponse response) {
+    Memo memo = memoBO.getMemo(memoId);
+    model.addAttribute("memo", memo);
+    
+    List<Memo> popular = memoBO.getPopularMemoList();
+    model.addAttribute("popularMemos", popular);
+    
+    /* 중복 조회 막기 */
+    Cookie oldCookie = null;
+    
+    Cookie[] cookies = request.getCookies();
+    
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("memoView")) {
+          oldCookie = cookie;
+        }
+      }
+    }
+    
+    if (oldCookie != null) {
+      if (!oldCookie.getValue().contains("[" + memoId + "]")) {
+        memoBO.addViews(memoId);
+        oldCookie.setValue(oldCookie.getValue() + "_[" + memoId + "]");
+        oldCookie.setPath("/");
+        oldCookie.setMaxAge(60 * 60 * 24);
+        response.addCookie(oldCookie);
+      }
+    } else {
+      memoBO.addViews(memoId);
+      Cookie newCookie = new Cookie("memoView", "[" + memoId + "]");
+      newCookie.setPath("/");
+      newCookie.setMaxAge(60 * 60 * 24); // 24*60*60-> 24번*60번*60초=24시간동안 저장됨
+      response.addCookie(newCookie);
+    }
+    
+    return "/memo/detailView";
+  }
+  
+  
 }

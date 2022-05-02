@@ -37,9 +37,9 @@
 				</div>
 
 				<div class="d-flex col-10 justify-content-end">
-				 <img id="captchaImg" class="col-2 " title="캡차이미지" src="/captchaImg.do" alt="캡차이미지" class="col-1 form-control" /> 
-					<input id="answer" type="text" class="form-control col-2">
-					<button id="check" class="btn col-1 bg-white ml-2" type="button" value="확인">확인</button>
+				 <img id="captchaImg" class="col-3" title="캡차이미지" src="/captchaImg.do" alt="캡차이미지" class="col-1 form-control" /> 
+					<input id="checkInput" type="text" class="form-control col-2">
+					<button id="checkBtn" class="btn col-1 bg-white ml-2" type="button" value="확인">확인</button>
 
 				</div>
 
@@ -54,63 +54,6 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 
-	<script>
-		$(document).ready(function() {
-
-			// jquery 
-			$("#captchaImg").on("click", function() {
-				getImage();
-			});
-
-			$("#saveBtn").on("click", function() {
-				var title = $("#titleInput").val().trim();
-				var content = $("#contentInput").val();
-				if (checkNum != true) {
-					alert("다중 업로드 방지 문자를 확인해주세요.");
-					return;
-				}
-				if (title == null || title == "") {
-					alert("제목을 입력하세요.");
-					return;
-				}
-				if (content == null || content == "") {
-					alert("내용을 입력하세요");
-					return;
-				}
-				if (!content && !title) {
-					alert("내용을 입력하세요");
-					return;
-				}
-
-				var formData = new FormData();
-				formData.append("subject", title);
-				formData.append("content", content);
-				formData.append("file", $("#fileInput")[0].files[0]);
-
-				$.ajax({
-					type : "post",
-					url : "/memo/create",
-					data : formData,
-					enctype : "multipart/form-data", //  파일 업로드 필수
-					processData : false,
-					contentType : false,
-					success : function(data) {
-						if (data.result == "success") {
-							alert("성공");
-							location.href = "/memo/list_view";
-						} else {
-							alert("글쓰기 실패");
-						}
-					},
-					error : function() {
-						alert("에러 발생");
-					}
-				});
-
-			});
-
-		});
-	</script>
 	<script src="/static/js/captcha.js"></script>
 </body>
 </html>

@@ -52,10 +52,10 @@
 				<thead>
 					<tr class="row100 head">
 
-						<th class="cell100  col-1">NO.</th>
-						<th class="cell100  col-5">제목</th>
-						<th class="cell100  col-2">시간</th>
-						<th class="cell100  col-1">조회수</th>
+						<th class="cell100  col-1 text-center">NO.</th>
+						<th class="cell100  col-3 text-center">제목</th>
+						<th class="cell100  col-2 text-center">시간</th>
+						<th class="cell100  col-1 text-center">조회수</th>
 					</tr>
 				</thead>
 			</table>
@@ -89,20 +89,20 @@
 								</c:choose>
 
 							</td>
-							<td class="cell100   col-5">
+							<td class="cell100   col-3 text-center">
 								<a href="/memo/detail_view?memoId=${memo.id}">${memo.subject}
 							</td>
 
 
 
 
-							<td class="cell100  col-2">
+							<td class="cell100  col-2 text-center">
 								<fmt:formatDate value="${memo.createdAt}" pattern="yyyy.MM.dd hh:mm" />
 
 							</td>
 
 
-							<td class="cell100  col-1">${memo.view}</td>
+							<td class="cell100  col-1 text-center">${memo.view}</td>
 
 						</tr>
 

@@ -1,5 +1,7 @@
 package com.juhyang.noticeBoard.memo.model;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class Criteria {
 
 		private int page;
@@ -8,7 +10,19 @@ public class Criteria {
 		private int rowEnd;
 		
 		
-		public void setRowStart(int rowStart) {
+		private String searchType;
+		private String keyword;
+		
+		
+		public String getSearchType() {
+      return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+      this.searchType = searchType;
+    }
+
+    public void setRowStart(int rowStart) {
 			this.rowStart = rowStart;
 		}
 
@@ -66,12 +80,42 @@ public class Criteria {
 			
 			return rowEnd;
 		}
+		
+		 public String getKeyword() {
+	      return keyword;
+	    }
 
+	    public void setKeyword(String keyword) {
+	      this.keyword = keyword;
+	    }
+
+	    
+	   public String makeQuery() {
+	      UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+	          .queryParam("page", page)
+	          .queryParam("perPageNum", this.perPageNum);
+	          
+	      if (searchType!=null) {
+	        uriComponentsBuilder
+	            .queryParam("searchType", this.searchType)
+	            .queryParam("keyword", this.keyword);
+	      }
+	      return uriComponentsBuilder.build().encode().toString();
+	    }   
+	    
+	    
+	    
 		@Override
 		public String toString() {
-			return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
-					+ "]";
+		  return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
+	        + keyword + "]";
 		}
+		
+		
+		
+		
+
+   
 		
 		
 	}

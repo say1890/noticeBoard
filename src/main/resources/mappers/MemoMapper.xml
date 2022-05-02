@@ -22,21 +22,29 @@
 		,now()
 		)
 	</insert>
+
 	<select id="selectMemoList"
 		resultType="com.juhyang.noticeBoard.memo.model.Memo"
 		parameterType="com.juhyang.noticeBoard.memo.model.Criteria">
-		SELECT
-		`id`
-		,`subject`
-		,`content`
-		,`view`
-		,`createdAt`
-		,`updatedAt`
-		FROM
-		`memo`
-		ORDER BY
-		`id` DESC LIMIT ${rowStart-1},10 ;
+		SELECT * FROM memo
+		
+		
+			<if test="searchType == 's'.toString()">
+				WHERE subject like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="searchType == 'c'.toString()">
+				WHERE content like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="searchType == 'all'.toString()">
+				WHERE (subject like CONCAT('%', #{keyword}, '%')
+				or content like CONCAT('%', #{keyword}, '%')
+			</if>
+	
 
+		ORDER BY
+		`id` DESC LIMIT ${rowStart-1}, 10 ;
 	</select>
 
 
@@ -54,7 +62,6 @@
 		FROM `memo`
 		WHERE
 		`id` = #{memoId}
-
 	</select>
 
 
@@ -72,7 +79,8 @@
 		FROM `memo`
 		WHERE
 		`imagePath` IS NOT NULL
-		ORDER BY
+		ORDER
+		BY
 		`view` DESC, `createdAt` DESC LIMIT 10;
 	</select>
 
@@ -84,33 +92,29 @@
 		`memo`
 	</select>
 
-
-
-
 	<delete id="deleteMemo" parameterType="int">
 		DELETE FROM `memo`
 		WHERE
 		`id` = #{memoId}
-
 	</delete>
+
 	<update id="increaseView" parameterType="int">
 		UPDATE
 		`memo`
 		SET
-		`view` = `view` + 1
+		`view` =
+		`view` + 1
 		WHERE
 		`id` = #{memoId}
 	</update>
 
 	<update id="resetId">
-	
-	ALTER TABLE `memo` AUTO_INCREMENT=1;
-	SET @COUNT = 0;
-	UPDATE `memo` SET `memo`.`id` = @COUNT:=@COUNT+1;
+	<![CDATA[
+		ALTER TABLE `memo` AUTO_INCREMENT=1;
+		SET @COUNT = 0;
+		UPDATE `memo` SET memo.id = @COUNT:=@COUNT+1;
+		]]>
 	</update>
-	<select id ="selectSearchedMemoList" resultType="com.juhyang.noticeBoard.memo.model.Memo">
-	SELECT * FROM memo
-	WHERE subject LIKE #{keyword};
-	</select>
+
 
 </mapper>
