@@ -109,11 +109,11 @@
 	</update>
 
 	<update id="resetId">
-	<![CDATA[
+
 		ALTER TABLE `memo` AUTO_INCREMENT=1;
 		SET @COUNT = 0;
-		UPDATE `memo` SET memo.id = @COUNT:=@COUNT+1;
-		]]>
+		UPDATE `memo` SET id = @COUNT:=@COUNT+1;
+	
 	</update>
 
 

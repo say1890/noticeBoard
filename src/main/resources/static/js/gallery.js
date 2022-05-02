@@ -63,13 +63,7 @@
     });
   });
   
-  list.mousewheel(function(event, delta) {
 
-      this.scrollLeft -= (delta * 60);
-    
-      event.preventDefault();
-
-   });
 })(jQuery);
 /*
 Thanks a lot Fabrice Weinberg for helping me organize and oprimize the  JS code :)
