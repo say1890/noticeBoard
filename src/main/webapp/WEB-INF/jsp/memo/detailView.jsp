@@ -25,7 +25,7 @@
 <body>
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<div id="wrap">
-		
+
 		<section class="d-flex justify-content-center">
 			<div class="w-75 my-5">
 				<div class="d-flex">
@@ -34,13 +34,15 @@
 						<h1>
 							<c:out value="${memo.subject}"></c:out>
 						</h1>
-						<c:set var="createdAt"><fmt:formatDate value ="${memo.createdAt}" pattern = "yyyy-MM-dd hh:mm"/></c:set>
-						<span class = "d-flex justify-content-end">${createdAt}</span>
+						<c:set var="createdAt">
+							<fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd hh:mm" />
+						</c:set>
+						<span class="d-flex justify-content-end">${createdAt}</span>
 					</div>
 
 				</div>
 				<hr>
-				<textarea readonly class="form-control mt-5"  cols="30" rows="5" id="contentInput">${memo.content}</textarea>
+				<textarea readonly class="form-control mt-5" cols="30" rows="5" id="contentInput">${memo.content}</textarea>
 				<div>
 					<a href="${memo.imagePath}" data-fancybox>
 						<img src="${memo.imagePath}">
@@ -51,7 +53,29 @@
 
 				<div class="d-flex justify-content-between mt-5">
 					<i class="bi bi-trash-fill text-danger" id="deleteBtn" data-memo-id="${memo.id}"></i>
+					
+					<!-- 드롭다운 -->
+					<div class="dropdown">
+					
+					<i class="bi bi-share" id="shareBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+					
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<div class = "d-flex justify-content-center">
+						
+							<a class="dropdown-item" href="#" id ="twitterBtn">
+								<i class="bi bi-twitter text-primary" ></i>
+							</a>
+							
+							<a class="dropdown-item" href="#" id ="facebookBtn">
+								<i class="bi bi-facebook text-primary"></i>
+							</a>
+						</div>
+					</div>
+
+
+
 				</div>
+
 			</div>
 		</section>
 
@@ -63,32 +87,34 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script>
-		$(document).ready(function(){
-			$("#deleteBtn").on("click",function(){
-				
+		$(document).ready(function() {
+			$("#deleteBtn").on("click", function() {
+
 				let memoId = $(this).data('memo-id');
 				$.ajax({
-					
-					type:"get",
-					url:"/memo/delete",
-					data:{"memoId":memoId},
-					success:function(data){
-						if(data.result=="success"){
+
+					type : "get",
+					url : "/memo/delete",
+					data : {
+						"memoId" : memoId
+					},
+					success : function(data) {
+						if (data.result == "success") {
 							alert("삭제 성공");
 							location.href = "/memo/list_view"
 						}
 					},
-					error:function(){
+					error : function() {
 						alert("에러 발생");
 					}
-					
-					
+
 				});
 			});
 		});
-		</script>
+	</script>
 
 	<!-- fancybox -->
+	<script src="/static/js/detailView.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 </body>
 </html>

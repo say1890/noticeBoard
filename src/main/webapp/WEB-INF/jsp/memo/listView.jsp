@@ -47,9 +47,9 @@
 
 	<table class="tablesorter mt-5" cellpadding="0" cellspacing="0" border="0">
 
-		<thead class="tbl-header">
+		<thead class="tbl-header" >
 			<tr>
-				<th class ="text-center">NO.</th>
+				<th class="text-center" >NO.</th>
 				<th>제목</th>
 				<th>시간</th>
 				<th>조회수</th>
@@ -72,79 +72,96 @@
 				</c:set>
 
 				<tr>
+
 					<td>
+
 						<c:choose>
 							<c:when test="${nowday eq createdAt }">
-									<div class ="text-center text-danger"><small>New</small></div>
-									<div class="mr-2 text-center">${memo.id}</div>
-									
-									
-								
+								<a href="/memo/detail_view?memoId=${memo.id}">
+									<div class="text-center text-danger">${memo.id}</div>
+								</a>
 							</c:when>
 							<c:otherwise>
-								<div class="col-1 ml-5">${memo.id}</div>
+							<a href="/memo/detail_view?memoId=${memo.id}" >
+								<div class="text-center">${memo.id}</div>
+							</a>	
 							</c:otherwise>
 						</c:choose>
 
 					</td>
-					<td>
-						<a href="/memo/detail_view?memoId=${memo.id}">${memo.subject}
-					</td>
+					 <td><a href="/memo/detail_view?memoId=${memo.id}"> ${memo.subject}</a></td> 
 
 
 
 					<c:set var="createdTime">
 						<fmt:formatDate value="${memo.createdAt}" pattern="HH" />
 					</c:set>
+					<c:set var="time">
+						<fmt:formatDate value="${memo.createdAt}" pattern="h:mm" />
+					</c:set>
+
+
 					<td>
 						<c:if test="${nowday eq createdAt }">
+						오늘
 							<c:choose>
 								<c:when test="${ createdTime <12 }">
 											오전
-										</c:when>
+								</c:when>
 								<c:otherwise>
 											오후
-										</c:otherwise>
+								</c:otherwise>
 							</c:choose>
-							<fmt:formatDate value="${memo.createdAt}" pattern="h:mm" />
+								${time}		
 						</c:if>
+
+						<c:if test="${nowday ne createdAt }">
+							<fmt:formatDate value="${memo.createdAt}" pattern="M월 d일" />
+							<c:choose>
+								<c:when test="${ createdTime <12 }">
+											오전
+								</c:when>
+								<c:otherwise>
+											오후
+								</c:otherwise>
+							</c:choose>
+							${time}
+						</c:if>
+
 
 					</td>
 
 
 					<td>${memo.view}</td>
-
 				</tr>
-
 			</c:forEach>
 
 		</tbody>
 
-		</div>
 
 
 
 
 	</table>
-	<div class="d-flex justify-content-center mt-5">
-		<ul>
-			<c:if test="${pageMaker.prev}">
-				<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-			</c:if>
+	<div class="d-flex justify-content-center mt-5 ">
 
-			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
-			</c:forEach>
+		<c:if test="${pageMaker.prev}">
+			<a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a>
+		</c:if>
 
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-			</c:if>
-		</ul>
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+			<a href="${pageMaker.makeQuery(idx)}" class="mr-3">${idx}</a>
+		</c:forEach>
+
+		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+			<a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a>
+		</c:if>
+
 	</div>
-	<c:if test = "${not empty popular}">
+	<c:if test="${!empty popularMemos}">
 		<c:import url="/WEB-INF/jsp/memo/gallery.jsp" />
 	</c:if>
-	
+
 
 
 
@@ -172,7 +189,7 @@
 			$(function() {
 				$(".tablesorter").tablesorter({
 					widgets : [ 'zebra' ],
-					sortList : [ [ 0, 0 ] ]
+					sortList : [ [ 0, 1 ] ]
 				});
 			});
 		</script>

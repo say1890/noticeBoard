@@ -26,8 +26,8 @@
 								❝
 								<c:set var="subject" value="${memo.subject}" />
 								<c:choose>
-										<c:when test="${fn:length(subject)>14}">
-												 ${fn:substring(subject,0,12)}...
+										<c:when test="${fn:length(subject)>18}">
+												 ${fn:substring(subject,0,17)}...
 										</c:when>
 										<c:otherwise>
 												 ${memo.subject}
