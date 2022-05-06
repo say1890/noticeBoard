@@ -45,7 +45,6 @@ public class MemoController {
     
     
     
-    
     return "/memo/listView";
   }
   

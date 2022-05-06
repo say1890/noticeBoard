@@ -26,10 +26,10 @@
 								❝
 								<c:set var="subject" value="${memo.subject}" />
 								<c:choose>
-										<c:when test="${fn:length(subject)>18}">
+									<c:when test="${fn:length(subject)>18}">
 												 ${fn:substring(subject,0,17)}...
 										</c:when>
-										<c:otherwise>
+									<c:otherwise>
 												 ${memo.subject}
 										</c:otherwise>
 								</c:choose>
@@ -38,16 +38,16 @@
 						</h4>
 						</p>
 						<p>
-						<c:set var="content" value="${memo.content}" />
+							<c:set var="content" value="${memo.content}" />
 							<c:choose>
-											<c:when test="${fn:length(content)>30}">
+								<c:when test="${fn:length(content)>30}">
 													 ${fn:substring(content,0,30)}…
 											</c:when>
-											<c:otherwise>
+								<c:otherwise>
 														${memo.content}
 											</c:otherwise>
 							</c:choose>
-					</p>
+						</p>
 					</figcaption>
 				</figure>
 				<div class="views">👀${memo.view}</div>
